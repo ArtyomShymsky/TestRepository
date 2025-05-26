@@ -177,7 +177,8 @@ PropertyChanged(null);
 ---
 
 > Ваш ответ
-> 
+> Предлагаю сделать 2 таблицы. Первая следующего вида: MatrixId - идентефикатор конкретной матрицы,RowsCount -числос строк, ColumnsCount -число столбцов
+> Вторая таблица: elementID - номер элемента в конкретной матрице, MatrixId - внешний ключ на таблицу 1(порказывает принадлежность элемента к конкретной матрице), Rownumber -номер строки в матрице, CollumnNumber - номер колонки в матрице, Value - значение лежащее в данном месте матрицы
 
 ### 5.2 Уникальный символ
 
@@ -185,8 +186,37 @@ PropertyChanged(null);
 
 ---
 
-```jsx
+```csharp
 public static char? FirstUnique(string str) {
-   // TODO Реализуйте функцию
+      if (string.IsNullOrEmpty(str))
+       return null;
+
+   if(!Regex.IsMatch(str, @"^[a-zA-Z]+$"))
+       return null;
+
+   var charsDictionary = new Dictionary<char, int>();
+ 
+  
+   foreach (char currentChar in str)
+   {
+       if (charsDictionary.ContainsKey(currentChar))
+       {
+           charsDictionary[currentChar]++;
+
+       }
+       else
+       {
+           charsDictionary[currentChar] = 1;
+
+       }
+   }
+
+   foreach (char currentChar in str)
+   {
+      if (charsDictionary[currentChar]== 1)
+        return currentChar;
+   }
+
+   return null;
 }
 ```
