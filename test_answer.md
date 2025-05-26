@@ -95,8 +95,7 @@ context.SaveChanges();
 > COMMIT TRANSACTION;
 > END TRY
 > BEGIN CATCH
->  IF @@TRANCOUNT > 0
->  ROLLBACK TRANSACTION;
+> ROLLBACK TRANSACTION;
 > END CATCH
 ### 2.2 Трекинг изменений
 
